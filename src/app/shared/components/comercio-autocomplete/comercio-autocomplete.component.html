@@ -1,0 +1,59 @@
+<div class="autocomplete-wrap">
+  <div class="input-wrapper" [class.focused]="open()" [class.has-value]="selectedComercio()">
+    <span class="icon-search" aria-hidden="true"></span>
+    <input
+      #inputRef
+      type="text"
+      class="input"
+      [placeholder]="placeholder()"
+      [ngModel]="query()"
+      (ngModelChange)="query.set($event); onInput()"
+      (focus)="onFocus()"
+      autocomplete="off"
+      role="combobox"
+      [attr.aria-expanded]="open()"
+      [attr.aria-haspopup]="'listbox'"
+      aria-label="Buscar comercio"
+    />
+    @if (selectedComercio()) {
+      <button type="button" class="btn-clear" (click)="clear(); $event.stopPropagation()" aria-label="Limpiar">
+        ×
+      </button>
+    }
+  </div>
+
+  @if (loading()) {
+    <p class="hint loading">Cargando lista de comercios...</p>
+  }
+
+  @if (open() && !loading()) {
+    <div class="dropdown" role="listbox">
+      @if (results().length === 0) {
+        <div class="dropdown-empty">
+          @if (query().length >= 2) {
+            No se encontraron comercios para "{{ query() }}"
+          } @else {
+            Escribí al menos 2 letras para buscar
+          }
+        </div>
+      } @else {
+        @for (c of results(); track c.id) {
+          <button
+            type="button"
+            class="dropdown-item"
+            [class.selected]="selectedId() === c.id"
+            (click)="select(c)"
+            role="option"
+          >
+            <span class="item-name">{{ c.nombre }}</span>
+            @if (isExtended(c) && (c.categoria || c.direccion)) {
+              <span class="item-meta">
+                {{ c.categoria }}{{ c.categoria && c.direccion ? ' · ' : '' }}{{ c.direccion ?? '' }}
+              </span>
+            }
+          </button>
+        }
+      }
+    </div>
+  }
+</div>

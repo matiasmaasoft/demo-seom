@@ -5,18 +5,12 @@
 
   <form class="form" (ngSubmit)="onSubmit()">
     <label class="label" for="comercio">Comercio</label>
-    <select
+    <app-comercio-autocomplete
       id="comercio"
-      class="input select"
-      [ngModel]="comercioId()"
-      (ngModelChange)="comercioId.set($event)"
-      name="comercio"
-    >
-      <option value="">Seleccione un comercio</option>
-      @for (c of comerciosList(); track c.id) {
-        <option [value]="c.id">{{ c.nombre }}</option>
-      }
-    </select>
+      [selectedId]="comercioId()"
+      (selectionChange)="onComercioSelect($event)"
+      placeholder="Buscar por nombre, categoría o dirección..."
+    />
 
     <label class="label" for="monto">Monto solicitado</label>
     <input

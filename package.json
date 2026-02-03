@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:github": "ng build -c github",
+    "deploy:gh": "ng build -c github && npx angular-cli-ghpages --dir=dist/demo-seom/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

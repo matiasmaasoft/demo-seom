@@ -36,6 +36,22 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
+### Deploy en GitHub Pages (repo `demo-seom`)
+
+Con **angular-cli-ghpages** (una sola vez):
+
+```bash
+npm run deploy:gh
+```
+
+Eso hace: build con `base-href /demo-seom/` y sube el contenido de **`dist/demo-seom/browser/`** a la rama `gh-pages`. La app queda en `https://<usuario>.github.io/demo-seom/` (rutas con hash: `...#/login`, `...#/socio`).
+
+Si prefieres hacerlo a mano:
+
+1. `ng build -c github`
+2. `npx angular-cli-ghpages --dir=dist/demo-seom/browser`  
+   (importante: usar **`dist/demo-seom/browser`**, no `dist/demo-seom`, porque ahí está `index.html`).
+
 ## Running unit tests
 
 To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:

@@ -7,11 +7,13 @@ import { SolicitudesService } from '../../../core/services/solicitudes.service';
 import { ComerciosService } from '../../../core/services/comercios.service';
 import { LimiteService } from '../../../core/services/limite.service';
 import { SnackbarService } from '../../../shared/services/snackbar.service';
+import { ComercioAutocompleteComponent } from '../../../shared/components/comercio-autocomplete/comercio-autocomplete.component';
+import type { Comercio, ComercioExtended } from '../../../core/models/comercio.model';
 
 @Component({
   selector: 'app-solicitar-consumo',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, ComercioAutocompleteComponent],
   templateUrl: './solicitar-consumo.component.html',
   styleUrl: './solicitar-consumo.component.scss',
 })
@@ -23,8 +25,6 @@ export class SolicitarConsumoComponent {
   private readonly snackbar = inject(SnackbarService);
   private readonly router = inject(Router);
 
-  readonly comerciosList = computed(() => this.comercios.getAll());
-
   socioId = computed(() => this.auth.getUsuarioActual()?.id ?? '');
   disponible = computed(() => this.limite.disponible(this.socioId()));
 
@@ -32,6 +32,10 @@ export class SolicitarConsumoComponent {
   monto = signal<number | null>(null);
   loading = signal(false);
   error = signal('');
+
+  onComercioSelect(c: Comercio | ComercioExtended | null): void {
+    this.comercioId.set(c?.id ?? '');
+  }
 
   onSubmit(): void {
     this.error.set('');

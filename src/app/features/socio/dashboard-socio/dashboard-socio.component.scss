@@ -1,0 +1,266 @@
+/* Dashboard Socio - Jerarquía: límite foco, bloques separados, contraste y spacing */
+
+.greeting {
+  font-size: 1.375rem;
+  font-weight: 700;
+  margin-bottom: var(--seom-spacing-section);
+  color: var(--seom-text);
+  letter-spacing: -0.02em;
+}
+
+/* --- Card Límite (foco principal) --- */
+.card-limit {
+  background: linear-gradient(145deg, var(--seom-primary) 0%, var(--seom-primary-dark) 100%);
+  color: #fff;
+  padding: var(--seom-spacing-card) 1.5rem;
+  margin-bottom: var(--seom-spacing-section);
+  box-shadow: 0 4px 16px rgba(197, 79, 8, 0.25);
+}
+
+.card-limit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.card-limit .card-title {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.card-limit-refresh {
+  opacity: 0.9;
+  font-size: 1.25rem;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+/* Monto disponible = foco principal (mayor tamaño y peso) */
+.limit-value {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 0.35rem 0;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Límite total = información secundaria */
+.limit-exp {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.progress-bar {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: var(--seom-radius-badge);
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #fff;
+  border-radius: var(--seom-radius-badge);
+  transition: width 0.3s ease;
+}
+
+.limit-detail {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  font-weight: 500;
+}
+
+/* --- Consumo mensual (bloque secundario) --- */
+.section-charts {
+  margin-bottom: var(--seom-spacing-section);
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  margin-top: 0;
+  color: var(--seom-text);
+  letter-spacing: -0.01em;
+}
+
+.chart-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.chart-row {
+  display: grid;
+  grid-template-columns: 72px 1fr 88px;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.chart-label {
+  font-size: 0.8125rem;
+  color: var(--seom-text-muted);
+  font-weight: 500;
+}
+
+.chart-bar-wrap {
+  height: 26px;
+  background: var(--seom-bg);
+  border-radius: var(--seom-radius-badge);
+  overflow: hidden;
+}
+
+.chart-bar {
+  height: 100%;
+  background: var(--seom-accent-blue);
+  border-radius: var(--seom-radius-badge);
+  min-width: 4px;
+  transition: width 0.3s ease;
+}
+
+.chart-value {
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-align: right;
+  color: var(--seom-text);
+}
+
+/* --- CTA principal centrado --- */
+.actions {
+  margin-bottom: var(--seom-spacing-section);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  min-height: 48px;
+}
+
+/* --- Listas: alineación y spacing --- */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--seom-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.list-item-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+
+.list-date {
+  font-size: 0.8125rem;
+  color: var(--seom-text-muted);
+  font-weight: 500;
+  width: 100%;
+}
+
+.list-name {
+  font-weight: 600;
+  color: var(--seom-text);
+  flex: 1;
+  min-width: 0;
+}
+
+.list-amount {
+  font-weight: 700;
+  color: var(--seom-text);
+  font-size: 1rem;
+  text-align: right;
+  margin-left: auto;
+}
+
+/* Badges de estado: no parecer botones, contraste WCAG */
+.list-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--seom-radius-badge);
+  letter-spacing: 0.02em;
+  display: inline-block;
+  width: fit-content;
+
+  &.badge-pendiente {
+    background: var(--seom-warning-bg);
+    color: #7d5a00;
+  }
+  &.badge-aprobada {
+    background: rgba(45, 106, 79, 0.15);
+    color: var(--seom-accent-green);
+  }
+  &.badge-rechazada {
+    background: var(--seom-danger-bg);
+    color: var(--seom-danger);
+  }
+  &.badge-utilizada {
+    background: rgba(0, 150, 199, 0.12);
+    color: var(--seom-accent-blue-dark);
+  }
+}
+
+/* "Pagar con QR" = acción secundaria, no compite con CTA principal */
+.list-link {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--seom-primary);
+  margin-top: 0.25rem;
+
+  &.btn-accent-blue {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1rem;
+    border-radius: var(--seom-radius-sm);
+    color: #fff;
+    text-decoration: none;
+    width: fit-content;
+    min-height: 40px;
+    background: var(--seom-accent-blue-dark);
+    transition: background 0.2s;
+    &:hover {
+      background: var(--seom-accent-blue);
+      text-decoration: none;
+    }
+  }
+}
+
+.empty-msg {
+  font-size: 0.9375rem;
+  color: var(--seom-text-muted);
+  margin: 0;
+  padding: 0.5rem 0;
+}

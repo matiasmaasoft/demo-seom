@@ -1,0 +1,95 @@
+.back-link {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--seom-primary);
+  margin-bottom: 1rem;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.page-title {
+  font-size: 1.375rem;
+  margin-bottom: 1rem;
+}
+
+.comprobante-card {
+  margin-bottom: var(--seom-spacing-section);
+  padding: var(--seom-spacing-card);
+}
+
+.comprobante-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.comprobante-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.comprobante-label {
+  font-size: 0.8125rem;
+  color: var(--seom-text-muted);
+}
+
+.comprobante-value {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.comprobante-comercio {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0.5rem 0 0.25rem 0;
+}
+
+.comprobante-monto {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--seom-primary-light);
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.02em;
+}
+
+.detail-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--seom-border);
+}
+
+.detail-line {
+  font-size: 0.875rem;
+  color: var(--seom-text-muted);
+  margin: 0.25rem 0;
+}
+
+.btn-share {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  min-height: 48px;
+}
+
+.link-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #fff;
+  width: 100%;
+  max-width: 320px;
+  padding: 0.875rem 0.75rem;
+  min-height: 44px;
+}
+
+.error-msg {
+  font-size: 0.875rem;
+  color: var(--seom-danger);
+  margin-bottom: 1rem;
+}

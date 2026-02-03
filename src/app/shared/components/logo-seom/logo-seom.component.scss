@@ -1,0 +1,64 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-icon {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2px;
+  width: 28px;
+  height: 28px;
+}
+
+.dot {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.dot-orange {
+  background: var(--seom-primary-light);
+}
+
+.dot-green {
+  background: var(--seom-accent-green);
+}
+
+.dot-blue {
+  background: var(--seom-accent-blue);
+}
+
+.logo-text {
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--seom-text);
+  letter-spacing: -0.02em;
+}
+
+.logo-text .mutual {
+  text-transform: uppercase;
+  margin-right: 0.25rem;
+  color: var(--seom-text-muted);
+}
+
+.logo-text .seom {
+  color: var(--seom-text);
+}
+
+/* En header oscuro */
+:host-context(.header-dark) .logo-text,
+:host-context(.header-dark) .logo-text .seom {
+  color: #fff;
+}
+
+:host-context(.header-dark) .logo-text .mutual {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+:host-context(.header-dark) .dot {
+  border-color: rgba(255, 255, 255, 0.4);
+}

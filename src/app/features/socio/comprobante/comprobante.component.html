@@ -1,0 +1,28 @@
+<div class="app-container">
+  <a routerLink="/socio" class="back-link">← Volver al inicio</a>
+  <h1 class="page-title">Comprobante de pago</h1>
+
+  @if (consumo(); as c) {
+    <section class="card comprobante-card">
+      <div class="comprobante-icon" aria-hidden="true">🛒</div>
+      <div class="comprobante-header">
+        <span class="comprobante-label">Fecha de compra</span>
+        <span class="comprobante-value">{{ formatFecha(c.fecha) }}</span>
+      </div>
+      <p class="comprobante-comercio">{{ comercioNombre() }}</p>
+      <p class="comprobante-monto">{{ formatMonto(c.monto) }}</p>
+
+      <h3 class="detail-title">Detalles del pago</h3>
+      <p class="detail-line">Pago único (sin cuotas)</p>
+      <p class="detail-line">Código de transacción: {{ c.codigoTransaccion }}</p>
+    </section>
+
+    <button type="button" class="btn-primary btn-share" (click)="compartir()">
+      Compartir comprobante
+    </button>
+    <a routerLink="/socio" class="btn-secondary link-back">Volver al inicio</a>
+  } @else {
+    <p class="error-msg">Comprobante no encontrado.</p>
+    <a routerLink="/socio" class="btn-primary">Volver al inicio</a>
+  }
+</div>

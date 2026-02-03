@@ -1,0 +1,30 @@
+<div class="app-container">
+  <a routerLink="/socio" class="back-link">← Volver al inicio</a>
+  <h1 class="page-title">Confirmar pago</h1>
+  <p class="comercio-name">{{ comercioNombre() }}</p>
+
+  <section class="card card-summary">
+    <h2 class="section-title">Resumen de pago</h2>
+    <p class="summary-line">Importe: {{ solicitud()?.monto | number:'1.2-2' }} ARS</p>
+    <p class="summary-total">Pago único (sin cuotas)</p>
+  </section>
+
+  @if (solicitud(); as s) {
+    <div class="qr-wrap">
+      <qrcode [qrdata]="qrData()" [width]="220" [errorCorrectionLevel]="'M'"></qrcode>
+      <p class="qr-hint">Presente este QR en el comercio o simule el escaneo abajo.</p>
+    </div>
+
+    <button
+      type="button"
+      class="btn-primary btn-confirm"
+      [disabled]="confirming()"
+      (click)="confirmarPago()"
+    >
+      {{ confirming() ? 'Procesando...' : 'Confirmar pago' }}
+    </button>
+  } @else {
+    <p class="error-msg">Solicitud no encontrada.</p>
+    <a routerLink="/socio" class="btn-primary">Volver al inicio</a>
+  }
+</div>

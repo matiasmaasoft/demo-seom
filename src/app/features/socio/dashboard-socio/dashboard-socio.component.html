@@ -1,0 +1,84 @@
+<div class="app-container">
+  <h1 class="greeting">Hola, {{ auth.usuarioActual()?.nombre ?? 'Socio' }}</h1>
+
+  <section class="card card-limit">
+    <div class="card-limit-header">
+      <span class="card-title">Límite disponible</span>
+      <span class="card-limit-refresh" aria-hidden="true">↻</span>
+    </div>
+    <p class="card-value limit-value">{{ formatMonto(disponible()) }}</p>
+    <p class="limit-exp">Límite total {{ formatMonto(limiteTotal()) }}</p>
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="(usado() / limiteTotal()) * 100"></div>
+    </div>
+    <p class="limit-detail">{{ formatMonto(disponible()) }} / {{ formatMonto(limiteTotal()) }}</p>
+  </section>
+
+  <section class="section-charts">
+    <h2 class="section-title">Consumo mensual</h2>
+    @if (consumosMensuales().length > 0) {
+      <div class="chart-bars">
+        @for (item of consumosMensuales(); track item.mes) {
+          <div class="chart-row">
+            <span class="chart-label">{{ item.mes }}</span>
+            <div class="chart-bar-wrap">
+              <div
+                class="chart-bar"
+                [style.width.%]="(item.total / (limiteTotal() || 1)) * 100"
+              ></div>
+            </div>
+            <span class="chart-value">{{ formatMonto(item.total) }}</span>
+          </div>
+        }
+      </div>
+    } @else {
+      <p class="empty-msg">Sin consumos este período.</p>
+    }
+  </section>
+
+  <div class="actions">
+    <a routerLink="/socio/solicitar" class="btn-primary link-btn">Solicitar consumo</a>
+  </div>
+
+  <section class="card">
+    <h2 class="section-title">Mis últimas compras</h2>
+    @if (consumosList().length > 0) {
+      <ul class="list">
+        @for (c of consumosList(); track c.id) {
+          <li class="list-item">
+            <div class="list-item-main">
+              <span class="list-date">{{ formatFecha(c.fecha) }}</span>
+              <span class="list-name">{{ getNombreComercio(c.comercioId) }}</span>
+              <span class="list-amount">{{ formatMonto(c.monto) }}</span>
+            </div>
+            <a [routerLink]="['/socio/comprobante', c.id]" class="list-link">Ver comprobante</a>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p class="empty-msg">Aún no hay consumos.</p>
+    }
+  </section>
+
+  <section class="card">
+    <h2 class="section-title">Estado de solicitudes</h2>
+    @if (solicitudesList().length > 0) {
+      <ul class="list">
+        @for (s of solicitudesList(); track s.id) {
+          <li class="list-item">
+            <div class="list-item-main">
+              <span class="list-date">{{ formatFecha(s.fecha) }}</span>
+              <span class="list-name">{{ getNombreComercio(s.comercioId) }} – {{ formatMonto(s.monto) }}</span>
+              <span class="list-badge" [class]="'badge-' + s.estado">{{ estadoLabel(s.estado) }}</span>
+            </div>
+            @if (s.estado === 'aprobada') {
+              <a [routerLink]="['/socio/pagar', s.id]" class="list-link btn-accent-blue">Pagar con QR</a>
+            }
+          </li>
+        }
+      </ul>
+    } @else {
+      <p class="empty-msg">Sin solicitudes.</p>
+    }
+  </section>
+</div>

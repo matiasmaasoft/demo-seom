@@ -1,0 +1,43 @@
+<div class="app-container">
+  <a routerLink="/socio" class="back-link">← Volver al inicio</a>
+  <h1 class="page-title">Solicitar consumo</h1>
+  <p class="page-subtitle">Elija comercio y monto. La aprobación es automática en esta demo.</p>
+
+  <form class="form" (ngSubmit)="onSubmit()">
+    <label class="label" for="comercio">Comercio</label>
+    <select
+      id="comercio"
+      class="input select"
+      [ngModel]="comercioId()"
+      (ngModelChange)="comercioId.set($event)"
+      name="comercio"
+    >
+      <option value="">Seleccione un comercio</option>
+      @for (c of comerciosList(); track c.id) {
+        <option [value]="c.id">{{ c.nombre }}</option>
+      }
+    </select>
+
+    <label class="label" for="monto">Monto solicitado</label>
+    <input
+      id="monto"
+      type="number"
+      class="input"
+      placeholder="0"
+      min="1"
+      [max]="disponible()"
+      [ngModel]="monto()"
+      (ngModelChange)="monto.set($any($event) === '' ? null : +$event)"
+      name="monto"
+    />
+    <p class="hint">Disponible: {{ disponible() | number:'1.2-2' }} ARS</p>
+
+    @if (error()) {
+      <p class="error-msg" role="alert">{{ error() }}</p>
+    }
+
+    <button type="submit" class="btn-primary btn-submit" [disabled]="loading()">
+      {{ loading() ? 'Enviando...' : 'Enviar solicitud' }}
+    </button>
+  </form>
+</div>

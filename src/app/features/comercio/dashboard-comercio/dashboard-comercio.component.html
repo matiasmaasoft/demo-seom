@@ -1,0 +1,43 @@
+<div class="app-container">
+  <h1 class="greeting">Vista Comercio</h1>
+  <p class="comercio-name">{{ comercio()?.nombre ?? 'Comercio' }}</p>
+
+  <section class="card card-total">
+    <span class="card-title">Monto total vendido</span>
+    <p class="card-value total-value">{{ formatMonto(totalVendido()) }}</p>
+  </section>
+
+  <section class="card">
+    <h2 class="section-title">Ventas realizadas</h2>
+    @if (ventas().length > 0) {
+      <ul class="list">
+        @for (v of ventas(); track v.id) {
+          <li class="list-item">
+            <span class="list-date">{{ formatFecha(v.fecha) }}</span>
+            <span class="list-detail">Socio {{ v.socioId }}</span>
+            <span class="list-amount">{{ formatMonto(v.monto) }}</span>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p class="empty-msg">Aún no hay ventas.</p>
+    }
+  </section>
+
+  <section class="card">
+    <h2 class="section-title">Compras por socio</h2>
+    @if (ventasPorSocio().length > 0) {
+      <ul class="list">
+        @for (g of ventasPorSocio(); track g.socioId) {
+          <li class="list-item">
+            <span class="list-detail">Socio {{ g.socioId }}</span>
+            <span class="list-amount">{{ formatMonto(g.total) }}</span>
+            <span class="list-count">{{ g.items.length }} compra(s)</span>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p class="empty-msg">Sin compras por socio.</p>
+    }
+  </section>
+</div>

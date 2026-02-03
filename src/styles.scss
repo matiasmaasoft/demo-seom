@@ -1,0 +1,172 @@
+/* DEMO APP SEOM - Tema global, mobile-first. UI/UX: contraste, jerarquía, spacing. */
+:root {
+  --seom-primary: #c54f08;
+  --seom-primary-light: #e85d04;
+  --seom-primary-dark: #9c3d06;
+  --seom-accent-green: #2d6a4f;
+  --seom-accent-green-light: #40916c;
+  --seom-accent-blue: #48cae4;
+  --seom-accent-blue-dark: #0096c7;
+  --seom-text: #1a1d21;
+  --seom-text-muted: #5c636a;
+  --seom-bg: #f0f2f5;
+  --seom-card-bg: #ffffff;
+  --seom-border: #e2e6ea;
+  --seom-success: #2d6a4f;
+  --seom-warning: #c9a227;
+  --seom-warning-bg: #fef3cd;
+  --seom-danger: #c53030;
+  --seom-danger-bg: #fde8e8;
+  --seom-radius: 12px;
+  --seom-radius-sm: 8px;
+  --seom-radius-badge: 6px;
+  --seom-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  --seom-shadow-soft: 0 1px 4px rgba(0, 0, 0, 0.05);
+  --seom-header-height: 56px;
+  --seom-safe-top: env(safe-area-inset-top, 0);
+  --seom-spacing-section: 1.5rem;
+  --seom-spacing-card: 1.25rem;
+  --seom-spacing-block: 1rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  color: var(--seom-text);
+  background: var(--seom-bg);
+  min-height: 100dvh;
+  padding-top: var(--seom-safe-top);
+  line-height: 1.45;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+h1 { font-size: 1.5rem; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1.125rem; }
+
+p {
+  margin: 0 0 0.5rem;
+}
+
+a {
+  color: var(--seom-primary);
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* Contenedor móvil */
+.app-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: var(--seom-spacing-block);
+  padding-bottom: calc(var(--seom-spacing-block) + env(safe-area-inset-bottom, 0));
+}
+
+@media (min-width: 480px) {
+  .app-container {
+    max-width: 420px;
+  }
+}
+
+/* Botón primario (naranja) - CTA principal */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 320px;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--seom-primary-light);
+  border-radius: var(--seom-radius);
+  box-shadow: var(--seom-shadow-soft);
+  transition: background 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  min-height: 48px;
+  &:hover, &:focus-visible {
+    background: var(--seom-primary-dark);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--seom-accent-green);
+  border-radius: var(--seom-radius-sm);
+  transition: background 0.2s;
+  min-height: 44px;
+  &:hover, &:focus-visible {
+    background: var(--seom-accent-green-light);
+  }
+}
+
+.btn-accent-blue {
+  background: var(--seom-accent-blue-dark);
+  &:hover, &:focus-visible {
+    background: var(--seom-accent-blue);
+  }
+}
+
+/* Cards: radios y sombras unificados */
+.card {
+  background: var(--seom-card-bg);
+  border-radius: var(--seom-radius);
+  box-shadow: var(--seom-shadow);
+  padding: var(--seom-spacing-card);
+  margin-bottom: var(--seom-spacing-section);
+}
+
+.card-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--seom-text-muted);
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.01em;
+}
+
+.card-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--seom-text);
+}

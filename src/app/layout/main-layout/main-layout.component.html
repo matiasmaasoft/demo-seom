@@ -1,0 +1,34 @@
+<header class="app-header header-dark">
+  <div class="header-inner">
+    <a routerLink="/socio" class="logo-link" aria-label="Inicio">
+      <app-logo-seom variant="short" />
+    </a>
+    <span class="user-name">{{ auth.usuarioActual()?.nombre ?? '' }}</span>
+    <div class="header-actions">
+      <div class="mode-switch" role="group" aria-label="Modo de vista">
+        <button
+          type="button"
+          class="mode-btn"
+          [class.active]="modoActual === 'socio'"
+          (click)="setModo('socio')"
+        >
+          Socio
+        </button>
+        <button
+          type="button"
+          class="mode-btn"
+          [class.active]="modoActual === 'comercio'"
+          (click)="setModo('comercio')"
+        >
+          Comercio
+        </button>
+      </div>
+      <button type="button" class="btn-logout" (click)="logout()" aria-label="Cerrar sesión">
+        Salir
+      </button>
+    </div>
+  </div>
+</header>
+<main class="app-main">
+  <router-outlet />
+</main>
